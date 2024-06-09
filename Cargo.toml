@@ -1,8 +1,15 @@
 [package]
 name = "lettuces"
-version = "0.1.0"
+description = "A grid logic crate combining Hexx and custom logic for square and isometric grids to provide a unified grid logic crate."
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+authors = ["Noah Shomette <git@noahshomette.me>"]
+repository = "https://github.com/NoahShomette/lettuces"
+homepage = "https://github.com/NoahShomette/lettuces"
+version = "0.0.1"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[badges]
+maintenance = { status = "actively-developed" }
 
 [dependencies]
