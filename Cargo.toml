@@ -13,3 +13,4 @@ edition = "2021"
 maintenance = { status = "actively-developed" }
 
 [dependencies]
+hexx = { version = "0.17.0" }
