@@ -1,54 +1,84 @@
 pub(crate) mod helpers;
+#[cfg(feature = "hex")]
+pub mod hex;
 pub mod implementations;
+#[cfg(feature = "square")]
+pub mod square;
 
-use helpers::{add_cell_arrays, convert_hex_six_array};
-use hexx::Hex;
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
+#[cfg(feature = "bevy_reflect")]
+use bevy::prelude::Reflect;
 
 /// A position in a grid. This can represent a hexagonal or square position. Functions for both are included on it.
+///
+/// If working with hexagonal maps its recommended to convert your Cell into [`Hex`](hex::Hex) when needed
 #[derive(Default, Eq, Hash, PartialEq, Copy, Clone, Debug)]
-pub struct Cell(Hex);
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "bevy_reflect", derive(Reflect))]
+pub struct Cell {
+    pub x: i32,
+    pub y: i32,
+}
 
 impl Cell {
+    /// (0, 0)
+    pub const ORIGIN: Self = Self::ZERO;
+    /// (0, 0)
+    pub const ZERO: Self = Self::new(0, 0);
+
+    /// (1, 1)
+    pub const ONE: Self = Self::new(1, 1);
+    /// (-1, -1)
+    pub const NEG_ONE: Self = Self::new(-1, -1);
+
+    /// +X (Q) (1, 0)
+    pub const X: Self = Self::new(1, 0);
+    /// -X (-Q) (-1, 0)
+    pub const NEG_X: Self = Self::new(-1, 0);
+    /// +Y (R) (0, 1)
+    pub const Y: Self = Self::new(0, 1);
+    /// -Y (-R) (0, -1)
+    pub const NEG_Y: Self = Self::new(0, -1);
+
     pub const fn new(x: i32, y: i32) -> Cell {
-        Cell(Hex::new(x, y))
+        Cell { x, y }
+    }
+
+    pub const fn splat(v: i32) -> Self {
+        Self::new(v, v)
     }
 
     pub const fn new_unsigned(x: u32, y: u32) -> Cell {
-        Cell(Hex::new(x as i32, y as i32))
+        Cell::new(x as i32, y as i32)
     }
 
-    pub const HEX_NEIGHBOR_OFFSETS: [Self; 6] = convert_hex_six_array(Hex::NEIGHBORS_COORDS);
+    pub const fn from_array([x, y]: [i32; 2]) -> Self {
+        Self::new(x, y)
+    }
 
-    pub const SQUARE_PRIMARY_OFFSETS: [Self; 4] = [
-        Self::new(1, 0),
-        Self::new(0, 1),
-        Self::new(-1, 0),
-        Self::new(0, -1),
-    ];
+    pub const fn from_slice(slice: &[i32]) -> Self {
+        Self::new(slice[0], slice[1])
+    }
 
-    pub const SQUARE_DIAGONAL_OFFSETS: [Self; 4] = [
-        Self::new(1, 1),
-        Self::new(-1, 1),
-        Self::new(-1, -1),
-        Self::new(1, -1),
-    ];
+    pub fn write_to_slice(self, slice: &mut [i32]) {
+        slice[0] = self.x;
+        slice[1] = self.y;
+    }
 
-    pub const SQUARE_OFFSETS: [Self; 8] =
-        add_cell_arrays(Self::SQUARE_DIAGONAL_OFFSETS, Self::SQUARE_PRIMARY_OFFSETS);
+    /// `x` coordinate
+    pub const fn x(self) -> i32 {
+        self.x
+    }
 
-    pub const fn inner(self) -> Hex {
-        self.0
+    /// `y` coordinate
+    pub const fn y(self) -> i32 {
+        self.y
     }
 
     /// The raw x and y pos of this cell
     pub const fn pos(self) -> [i32; 2] {
-        [self.0.x, self.0.y]
-    }
-
-    /// The calculated z coordinate. Used only for hexagonal grids.
-    ///
-    /// See [`Hex::z()`] for more info.
-    pub const fn z(self) -> i32 {
-        self.0.z()
+        [self.x, self.y]
     }
 }

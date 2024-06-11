@@ -12,5 +12,16 @@ edition = "2021"
 [badges]
 maintenance = { status = "actively-developed" }
 
+[features]
+default = ["square", "hex"]
+hex = []
+square = []
+serde = ["dep:serde", "serde/default", "bevy/serialize"]
+bevy_reflect = ["dep:bevy"]
+
 [dependencies]
 hexx = { version = "0.17.0" }
+glam = { version = "0.28.0" }
+serde = { version = "1.0.183", optional = true }
+bevy = { version = "0.13", default-features = false, features = [
+], optional = true }
