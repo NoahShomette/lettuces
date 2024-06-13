@@ -5,6 +5,9 @@ pub mod implementations;
 #[cfg(feature = "square")]
 pub mod square;
 
+#[cfg(feature = "bevy")]
+use bevy::prelude::Component;
+
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
@@ -15,6 +18,7 @@ use bevy::prelude::Reflect;
 ///
 /// If working with hexagonal maps its recommended to convert your Cell into [`Hex`](hex::Hex) when needed
 #[derive(Default, Eq, Hash, PartialEq, Copy, Clone, Debug)]
+#[cfg_attr(feature = "bevy", derive(Component))]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[cfg_attr(feature = "bevy_reflect", derive(Reflect))]
 pub struct Cell {

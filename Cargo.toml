@@ -17,7 +17,8 @@ default = ["square", "hex"]
 hex = []
 square = []
 serde = ["dep:serde", "serde/default", "bevy/serialize"]
-bevy_reflect = ["dep:bevy"]
+bevy = ["dep:bevy"]
+bevy_reflect = ["bevy"]
 
 [dependencies]
 hexx = { version = "0.17.0" }
