@@ -6,6 +6,8 @@ use super::grid::Grid;
 
 /// Storage structure for a hexagon map that is rectangular in nature with rows of the same length.
 ///
+/// Uses Axial Coordinate System
+///
 /// See [RedBlobGames Hexagon Map Storage](https://www.redblobgames.com/grids/hexagons/#map-storage)
 pub struct HexRectangleStorage<T> {
     pub grid: Grid<T>,
@@ -77,7 +79,7 @@ impl<T> HexRectangleStorage<T> {
     }
 
     pub fn verify_access(cell: Cell) -> Option<[usize; 2]> {
-        let col = cell.x as i32 + f32::floor(cell.y as f32 / 2.0) as i32;
+        let col = cell.x + f32::floor(cell.y as f32 / 2.0) as i32;
         if cell.y.is_negative() || col.is_negative() {
             return None;
         }
