@@ -16,6 +16,7 @@ use super::grid::Grid;
 /// Uses Axial Coordinate System
 ///
 /// See [RedBlobGames Hexagon Map Storage](https://www.redblobgames.com/grids/hexagons/#map-storage)
+#[derive(Hash, Clone, Debug)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 #[cfg_attr(feature = "bevy_reflect", derive(Reflect))]
 pub struct HexRectangleStorage<T> {
