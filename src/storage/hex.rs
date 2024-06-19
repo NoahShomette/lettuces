@@ -1,5 +1,11 @@
 use glam::UVec2;
 
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
+
+#[cfg(feature = "bevy_reflect")]
+use bevy::prelude::Reflect;
+
 use crate::cell::Cell;
 
 use super::grid::Grid;
@@ -9,6 +15,8 @@ use super::grid::Grid;
 /// Uses Axial Coordinate System
 ///
 /// See [RedBlobGames Hexagon Map Storage](https://www.redblobgames.com/grids/hexagons/#map-storage)
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "bevy_reflect", derive(Reflect))]
 pub struct HexRectangleStorage<T> {
     pub grid: Grid<T>,
     pub dimensions: UVec2,
