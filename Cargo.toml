@@ -6,7 +6,7 @@ readme = "README.md"
 authors = ["Noah Shomette <git@noahshomette.me>"]
 repository = "https://github.com/NoahShomette/lettuces"
 homepage = "https://github.com/NoahShomette/lettuces"
-version = "0.0.3"
+version = "0.0.4"
 edition = "2021"
 
 [badges]
