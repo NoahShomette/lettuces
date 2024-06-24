@@ -8,6 +8,12 @@ impl From<Hex> for Cell {
     }
 }
 
+impl From<Cell> for Hex {
+    fn from(value: Cell) -> Self {
+        Hex::new(value.x, value.y)
+    }
+}
+
 impl Cell {
     /// Converts offset coordinates into axial coordinates with the given mode.
     pub fn from_offset_coordinates(coords: [i32; 2], mode: OffsetHexMode) -> Cell {
