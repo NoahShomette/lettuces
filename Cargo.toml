@@ -24,5 +24,8 @@ bevy_reflect = ["bevy", "hexx/bevy_reflect"]
 hexx = { version = "0.17.0" }
 glam = { version = "0.28.0" }
 serde = { version = "1.0.183", optional = true }
-bevy = { version = "0.13", default-features = false, features = [
+bevy = { version = "0.14.0", default-features = false, features = [
 ], optional = true }
+
+[patch.crates-io]
+hexx = {git = "https://github.com/ManevilleF/hexx.git", commit = "35bd74e703925d19160674f7cfe437ce70adec06"}
