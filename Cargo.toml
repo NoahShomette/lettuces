@@ -28,4 +28,4 @@ bevy = { version = "0.14.0", default-features = false, features = [
 ], optional = true }
 
 [patch.crates-io]
-hexx = {git = "https://github.com/ManevilleF/hexx.git", commit = "35bd74e703925d19160674f7cfe437ce70adec06"}
+hexx = {git = "https://github.com/ManevilleF/hexx.git", rev = "35bd74e703925d19160674f7cfe437ce70adec06"}

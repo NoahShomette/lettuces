@@ -1580,7 +1580,7 @@ checksum = "dfa686283ad6dd069f105e5ab091b04c62850d3e4cf5d67debad1933f55023df"
 [[package]]
 name = "hexx"
 version = "0.17.0"
-source = "git+https://github.com/ManevilleF/hexx.git#35bd74e703925d19160674f7cfe437ce70adec06"
+source = "git+https://github.com/ManevilleF/hexx.git?rev=35bd74e703925d19160674f7cfe437ce70adec06#35bd74e703925d19160674f7cfe437ce70adec06"
 dependencies = [
  "bevy_reflect",
  "glam 0.27.0",
