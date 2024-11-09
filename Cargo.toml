@@ -6,7 +6,7 @@ readme = "README.md"
 authors = ["Noah Shomette <git@noahshomette.me>"]
 repository = "https://github.com/NoahShomette/lettuces"
 homepage = "https://github.com/NoahShomette/lettuces"
-version = "0.0.6"
+version = "0.0.7"
 edition = "2021"
 
 [badges]
@@ -21,8 +21,7 @@ bevy = ["dep:bevy"]
 bevy_reflect = ["bevy", "hexx/bevy_reflect"]
 
 [dependencies]
-hexx = { version = "0.17.0" }
-glam = { version = "0.28.0" }
-serde = { version = "1.0.183", optional = true }
-bevy = { version = "0.13", default-features = false, features = [
-], optional = true }
+hexx = { git = "https://github.com/richchurcher/hexx" branch = "0.15" }
+glam = { version = "0.29.2" }
+serde = { version = "1.0.214", optional = true }
+bevy = { version = "0.15.0-rc.3", default-features = false, features = [], optional = true }
