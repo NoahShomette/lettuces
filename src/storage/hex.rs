@@ -313,17 +313,16 @@ mod tests {
     }
 
     fn make_map(size: UVec2, orientation: HexOrientation) -> Vec<Vec<TileData>> {
-        let mode = match orientation {
-            HexOrientation::Pointy => hexx::OffsetHexMode::OddRows,
-            HexOrientation::Flat => hexx::OffsetHexMode::OddColumns,
-        };
-
         let mut map = vec![];
         for y in 0..size.y {
             let mut row = vec![];
             for x in 0..size.x {
                 row.push(TileData {
-                    position: Cell::from(Cell::from_offset_coordinates([x as i32, y as i32], mode)),
+                    position: Cell::from_offset_coordinates(
+                        [x as i32, y as i32],
+                        hexx::OffsetHexMode::Odd,
+                        orientation,
+                    ),
                 });
             }
             map.push(row);
