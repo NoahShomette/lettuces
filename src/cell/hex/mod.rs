@@ -1,4 +1,4 @@
-use hexx::{Hex, OffsetHexMode};
+use hexx::{Hex, HexOrientation, OffsetHexMode};
 
 use super::Cell;
 
@@ -16,7 +16,11 @@ impl From<Cell> for Hex {
 
 impl Cell {
     /// Converts offset coordinates into axial coordinates with the given mode.
-    pub fn from_offset_coordinates(coords: [i32; 2], mode: OffsetHexMode) -> Cell {
-        Hex::from_offset_coordinates(coords, mode).into()
+    pub fn from_offset_coordinates(
+        coords: [i32; 2],
+        mode: OffsetHexMode,
+        orientation: HexOrientation,
+    ) -> Cell {
+        Hex::from_offset_coordinates(coords, mode, orientation).into()
     }
 }
